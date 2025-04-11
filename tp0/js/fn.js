@@ -12,7 +12,6 @@ function main () {
 
 async function fetchCharacters (){
 
-    characters = [];
     clearUi();
 
     console.log(userInput)
