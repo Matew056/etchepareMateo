@@ -40,9 +40,6 @@ stats[2]=defense
 */
 
 function generateUI (characters) {
-/*
-src=characters[i].sprites.front_default
-*/ 
     let img1 = document.createElement('img');
     img1.src = characters[0].sprites.front_default
     img1.alt = characters[0].forms.name
@@ -62,8 +59,6 @@ src=characters[i].sprites.front_default
     mainDiv.appendChild(img2)
 
     console.log('UI generated')
-
-    
 }
 
 //
@@ -72,10 +67,17 @@ button.addEventListener("click", () => {
 })
 
 function compareAttacks (characters) {
-    if (characters[0].stats[2]) {
-
+    if (characters[0].stats[2]<characters[1].stats[1]) {
+        console.log(`ataque de ${characters[0].forms.name} es mayor que la defensa de ${characters[1].forms.name}`)
+        
+    } else if (characters[0].stats[2]>characters[1].stats[1]) {
+        console.log(`ataque de ${characters[1].forms.name} es mayor a la defensa de ${characters[0].forms.name}`)
+    } else {
+        console.log(`el ataque es igual a la defensa`)
     }
+
 }
+
 
 getRandomCharacters();
 //getCharacter()
