@@ -11,9 +11,8 @@ function main () {
 };
 
 async function fetchCharacters (){
-
     clearUi();
-
+    console.clear();
     console.log(userInput)
     for(i = 1; i <= userInput.value; i++) {
         let tempCharacter
