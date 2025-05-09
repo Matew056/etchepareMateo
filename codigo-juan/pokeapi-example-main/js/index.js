@@ -57,8 +57,12 @@ function renderPokemonCard(position) {
         <span class="stat-value">${pokemon.attack}</span>
       </div>
       <div class="pokemon-stat">
-        <span class="stat-label">hp: </span>
-        <span class="stat-value">${pokemon.hp}</span>
+        <span class="stat-label">defense: </span>
+        <span class="stat-value">${pokemon.defense}</span>
+
+        <span class="stat-label">battleResult: </span>
+        <span class="stat-value">${pokemon.battleResult}</span>
+
       </div>
     </div>
   `;
@@ -186,10 +190,16 @@ function handleBattle() {
   // Obtenes el ganador
   let winner;
   let pokemonWinnerName;
-  if (pokemons.pokemon1.attack > pokemons.pokemon2.attack) {
+
+  pokemons.pokemon1.battleResult = pokemons.pokemon1.defense-pokemons.pokemon2.attack
+  pokemons.pokemon2.battleResult = pokemons.pokemon2.defense-pokemons.pokemon1.attack
+
+  if (pokemons.pokemon1.battleResult > pokemons.pokemon2.battleResult) {
+    console.log("defensa del 1 - ataque del 2 = "+pokemons.pokemon1.battleResult)
     winner = 1;
     pokemonWinnerName = pokemons.pokemon1.name;
-  } else if (pokemons.pokemon2.attack > pokemons.pokemon1.attack) {
+  } else if (pokemons.pokemon2.battleResult > pokemons.pokemon1.battleResult) {
+    console.log("defensa del 2 - ataque del 1 = "+pokemons.pokemon1.battleResult)
     pokemonWinnerName = pokemons.pokemon2.name;
     winner = 2;
   } else {
@@ -214,10 +224,9 @@ function pokemonAdapter(pokemon) {
     attack:
       pokemon.stats.find((stat) => stat.stat.name === "attack")?.base_stat || 0,
     hp: pokemon.stats.find((stat) => stat.stat.name === "hp")?.base_stat || 0,
+    defense: pokemon.stats.find((stat) => stat.stat.name === "defense")?.base_stat || 0,
   };
 }
-
-
 
 // Busca el pokemon con el input del usuario
 async function fetchPokemon(id, position) {
@@ -238,6 +247,7 @@ async function fetchPokemon(id, position) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  
 
     // 404 es el status "not-found"
     if (res.status === 404) {
