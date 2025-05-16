@@ -3,12 +3,10 @@ const url = "https://pokeapi.co/api/v2/pokemon";
 const button = document.getElementById("button")
 
 let characters = []
-// stats
-/*
-conseguir attack stats de 2 personajes y ver quien gana
- */ 
-// RETO CONSEGUIRLO EN 2 LLAMADAS A LA API
-function getRandomCharacters () {
+
+
+
+function getCharacters () {
     for (let i = 0; i < 6; i++) {
         getRandomCharacter()
     }
