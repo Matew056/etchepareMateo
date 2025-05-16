@@ -15,3 +15,4 @@ boton de iniciar batalla se desbloquea cuando se bloqueen los dos botones
 en caso de empate de la batalla convencional de pokemones, se apela a la puntuacion conseguida en los dados tirados para desempatar. El equipo que haya tenido mas puntuacion en la tirada de dados, gana
 
 
+OPCIONAL: un archivo js para batalla convencional y otro para los dados
