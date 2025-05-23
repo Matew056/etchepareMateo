@@ -1,7 +1,19 @@
-Tarea:
+TP0
 
-1 recibir dos inputs de usuario
-2 cada input debe contener un número, cada número es la ID de un pokemon
-3 traer los dos pokemones (fetch)
-4 comparar hp de ambos pokemones, quien tenga mas vida "gana"
-5 
+fetchPokemon.js: archivo para llamar 1 pokemon 
+ui.js: hacer el html
+battle.js: logica de batalla
+dice.js: manejo de dados (devuelve un solo resultado de dados)
+main.js: archivo para llamar a las funciones
+
+ideas:
+mouse hover en todo
+sonidos por cada accion
+
+cartas que se descubran cuando pasas el mouse por arriba
+// https://www.youtube.com/watch?v=OV8MVmtgmoY
+
+POSIBLES FEATURES
+llamar pokemons por nombre?
+reiniciar batalla
+historial de batallas

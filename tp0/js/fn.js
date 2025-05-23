@@ -1,3 +1,5 @@
+// OLD FILE, DELETE AS SOON AS ALL THE CODE IS ON OTHER FILES
+
 const url = "https://pokeapi.co/api/v2/pokemon";
 
 const button = document.getElementById("button")
@@ -9,23 +11,6 @@ function getCharacters () {
         characters.push(getRandomCharacter())
     }
     generateCharactersUI(characters)
-}
-async function getRandomCharacter () {
-    if (characters.length === 6) {
-        return 0;
-    }
-    let randomNumber = Math.round(Math.random() * (1022 - 1) + 1)
-    if (randomNumber > 1022) {
-        getRandomCharacter()
-        console.log("recursion usada ")
-        return 1;
-    }
-    console.log(randomNumber);
-    //
-    const response = await fetch(`${url}/${randomNumber}`);
-    let character = await response.json();
-    console.log(character.stats);
-    return character
 }
 
 function generateCharactersUI () {
@@ -61,7 +46,6 @@ function generateDiceButtons () {
 
     let buttonDiv = document.getElementById("dice-buttons");
     buttonDiv.innerHTML = ""
-
 
     let diceButton1 = document.createElement("button")
     diceButton1.innerHTML = "boton equipo 1"
