@@ -3,50 +3,44 @@ const url = "https://pokeapi.co/api/v2/pokemon";
 const button = document.getElementById("button")
 
 let characters = []
-
-async function getCharacter() {
-    for(let i = 1; i < 2; i++) {
-        const response = await fetch(`${url}/${i}`);
-        character = await response.json();
-        console.log(`${url}/${i}`)
-        console.log(character);
-
-        `mi edad es ${variable}`
-        'mi edad es ' + variable
-    }
-}
 // stats
 /*
 conseguir attack stats de 2 personajes y ver quien gana
  */ 
 // RETO CONSEGUIRLO EN 2 LLAMADAS A LA API
-async function getRandomCharacters () {
-    
-    for (let i = 0; i < 2; i++) {
-        // random number
-        let randomNumber = Math.round(Math.random() * (1302 - 1) + 1)
-        if (randomNumber > 1022) {randomNumber = 1023}
-        console.log(randomNumber);
-        ///
-        const response = await fetch(`${url}/${randomNumber}`);
-        let character = await response.json();
-        console.log(character.stats);
-        characters.push(character);
+function getRandomCharacters () {
+    for (let i = 0; i < 6; i++) {
+        getRandomCharacter()
     }
     generateUI(characters)
+}
+async function getRandomCharacter () {
+    if (characters.length === 6) {
+        return 0;
+    }
+    let randomNumber = Math.round(Math.random() * (1022 - 1) + 1)
+    if (randomNumber > 1022) {
+        getRandomCharacter()
+        console.log("recursion usada ")
+        return 1;
+    }
+    console.log(randomNumber);
+    //
+    const response = await fetch(`${url}/${randomNumber}`);
+    let character = await response.json();
+    console.log(character.stats);
+    characters.push(character);
 
+    generateUI(characters)
 }
 
-
-
 function generateUI () {
-    let img1 = document.createElement('img');
-    img1.src = characters[0].sprites.front_default
-    img1.alt = characters[0].forms.name
-
-    let img2 = document.createElement('img');
-    img2.src = characters[1].sprites.front_default
-    img2.alt = characters[1].forms.name
+    let img = []
+    for(let i = 0; i < 6; i++) {
+        img[i] = document.createElement('img');
+        img[i].src = characters[i].sprites.front_default
+        img[i].alt = characters[i].forms.name
+    }
 
     let mainDiv = document.getElementById("characters")
 
@@ -54,9 +48,13 @@ function generateUI () {
     let text = document.createTextNode('VS')
     p.appendChild(text)
 
-    mainDiv.appendChild(img1)
+    for(let i = 0; i < 3; i++) {
+        mainDiv.appendChild(img[i])
+    }
     mainDiv.appendChild(p)
-    mainDiv.appendChild(img2)
+    for(let i = 3; i < 6; i++) {
+        mainDiv.appendChild(img[i])
+    }
 
     console.log('UI generated')
 }
