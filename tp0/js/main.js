@@ -1,6 +1,5 @@
-import getPokemons from fetchPokemon.js // corregir, ES6 modules
+const button = document.getElementById("button")
 
 const pokemonNumber = 6
 
 let characters = getPokemons(pokemonNumber)
-

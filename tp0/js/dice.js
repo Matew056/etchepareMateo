@@ -1,4 +1,4 @@
-function rollDices() {
+export function rollDices() {
     bestResult = 0;
         let dice1 = Math.round(Math.random() * (6 - 1) + 1)
         let dice2 = Math.round(Math.random() * (6 - 1) + 1)
