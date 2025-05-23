@@ -5,14 +5,16 @@ class Pokemon {
     hp; //health points
     defense;
     attack;
-    image;
+    imageFront;
+    imageBack
 }
 
 // hacer un adapter
 
-async function getPokemons (times) {
+export async function getPokemons (times) {
+    let characters = []
     for (let i = 0; i < times; i++) {
-        let characters = []
+        
         let usedIds = []
 
         let randomNumber = Math.round(Math.random() * (1022 - 1) + 1)
@@ -29,15 +31,16 @@ async function getPokemons (times) {
         try {
             let response = await fetch(`${url}/${randomNumber}`);
             let character = await response.json();
+            usedIds.push(randomNumber)
+            characters.push(character)
         } catch {
             console.error("error fetching 1 pokemon")
             i -= 1
             continue;
         }
-        usedIds.push(randomNumber)
-        characters.push[character]
+        
     }
-    return characters
+    return adapter(characters)
 }
 
 /*
@@ -47,14 +50,20 @@ console.log(`defensa de ${characters[1].forms[0].name} es ${characters[1].stats[
 stats[0]=hp
 stats[1]=attack
 stats[2]=defense
-
 */ 
 
 function adapter(rawCharacters) {
     let characters = [];
     for (let i = 0; i < rawCharacters.length; i++) {
         let character = new Pokemon
+        character.name = rawCharacters[i].forms[0].name
+        character.hp = rawCharacters[i].stats[0].base_stat
+        character.attack = rawCharacters[i].stats[1].base_stat
+        character.defense = rawCharacters[i].stats[2].base_stat
+        character.imageFront = rawCharacters[i].sprites.front_default
+        character.imageBack = rawCharacters[i].sprites.back_default
+        console.log(character)
+        characters.push(character)
     }
-    
-
+    return characters
 }	

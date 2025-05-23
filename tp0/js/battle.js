@@ -1,3 +1,24 @@
+function makeTeams(characters, teamNumber){
+    let teams = [];
+
+    let i
+    for (i = 0; i < characters.length;)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// deprecated
 function calculateTeamStats (team) {
     let stats = []
     if (team.length < 2) {
@@ -5,7 +26,7 @@ function calculateTeamStats (team) {
     }
     for (let i = 0; i < team.length; i++) {
         for (let j = 0; j < team.length; j++) {
-        stats[i] += team[j]stats[i].base_stat
+        stats[i] += team[j].stats[i].base_stat
         }
     }
     return stats;

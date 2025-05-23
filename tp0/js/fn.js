@@ -11,6 +11,6 @@ stats[1]=attack
 stats[2]=defense
 */
 
-getCharacters();
-generateUI(characters);
+//getCharacters();
+//generateUI(characters);
 //getCharacter()
