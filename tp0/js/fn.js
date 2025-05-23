@@ -4,13 +4,11 @@ const button = document.getElementById("button")
 
 let characters = []
 
-
-
 function getCharacters () {
     for (let i = 0; i < 6; i++) {
-        getRandomCharacter()
+        characters.push(getRandomCharacter())
     }
-    generateUI(characters)
+    generateCharactersUI(characters)
 }
 async function getRandomCharacter () {
     if (characters.length === 6) {
@@ -27,12 +25,10 @@ async function getRandomCharacter () {
     const response = await fetch(`${url}/${randomNumber}`);
     let character = await response.json();
     console.log(character.stats);
-    characters.push(character);
-
-    generateUI(characters)
+    return character
 }
 
-function generateUI () {
+function generateCharactersUI () {
     let img = []
     for(let i = 0; i < 6; i++) {
         img[i] = document.createElement('img');
@@ -54,7 +50,28 @@ function generateUI () {
         mainDiv.appendChild(img[i])
     }
 
+    // generar botones abajo de todo esto
+
+    generateDiceButtons()
+
     console.log('UI generated')
+}
+
+function generateDiceButtons () {
+
+    let buttonDiv = document.getElementById("dice-buttons");
+    buttonDiv.innerHTML = ""
+
+
+    let diceButton1 = document.createElement("button")
+    diceButton1.innerHTML = "boton equipo 1"
+
+    let diceButton2 = document.createElement("button")
+    diceButton2.innerHTML = "boton equipo 2"
+
+    buttonDiv.appendChild(diceButton1)
+    buttonDiv.appendChild(diceButton2)
+
 }
 
 //  
@@ -65,6 +82,19 @@ stats[0]=hp
 stats[1]=attack
 stats[2]=defense
 */
+
+function calculateTeamStats (team) {
+    let stats = []
+    if (team.length < 2) {
+        console.error("WARNING: the team has less than 2 characters")
+    }
+    for (let i = 0; i < team.length; i++) {
+        for (let j = 0; j < team.length; j++) {
+        stats[i] += team[j]stats[i].base_stat
+        }
+    }
+    return stats;
+}
 
 function compareAttacks () {
     console.log(`ataque de ${characters[0].forms[0].name} es  ${characters[0].stats[2].base_stat}`)
@@ -78,6 +108,6 @@ function compareAttacks () {
     }
 }
 
-
-getRandomCharacters();
+getCharacters();
+generateUI(characters);
 //getCharacter()
