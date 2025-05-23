@@ -1,15 +1,15 @@
 const url = "https://pokeapi.co/api/v2/pokemon";
 
+class Pokemon {
+    name;
+    hp; //health points
+    defense;
+    attack;
+    image;
+}
+
 // hacer un adapter
-/*
-console.log(`ataque de ${characters[0].forms[0].name} es  ${characters[0].stats[2].base_stat}`)
-console.log(`defensa de ${characters[1].forms[0].name} es ${characters[1].stats[1].base_stat}`)
 
-stats[0]=hp
-stats[1]=attack
-stats[2]=defense
-
-*/ 
 async function getPokemons (times) {
     for (let i = 0; i < times; i++) {
         let characters = []
@@ -39,3 +39,22 @@ async function getPokemons (times) {
     }
     return characters
 }
+
+/*
+console.log(`ataque de ${characters[0].forms[0].name} es  ${characters[0].stats[2].base_stat}`)
+console.log(`defensa de ${characters[1].forms[0].name} es ${characters[1].stats[1].base_stat}`)
+
+stats[0]=hp
+stats[1]=attack
+stats[2]=defense
+
+*/ 
+
+function adapter(rawCharacters) {
+    let characters = [];
+    for (let i = 0; i < rawCharacters.length; i++) {
+        let character = new Pokemon
+    }
+    
+
+}	
